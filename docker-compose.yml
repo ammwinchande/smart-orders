@@ -31,7 +31,8 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/mysql/
+      - ./docker-compose/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - smartorder
 
@@ -50,3 +51,7 @@ services:
 networks:
   smartorder:
     driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
