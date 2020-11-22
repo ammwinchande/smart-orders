@@ -37,6 +37,7 @@ class Product extends Model
      * @var array
      */
     public static $rules = [
+        'supplier_id' => 'required|exits:suppliers,id',
         'name' => 'required|min:2|max:45',
         'description' => 'required|min:5|max:45',
         'quantity' => 'required|max:45',
