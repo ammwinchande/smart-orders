@@ -7,6 +7,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateOrder extends FormRequest
 {
+    public function prepareForValidation()
+    {
+        $added_by = auth()->user()->id;
+        if ($added_by != $this->user_id) {
+            return response()->json(['error' => 'Cannot update order you have not added!']);
+        }
+        $this->merge(['user_id' => $added_by]);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
