@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
+use App\Http\Resources\Product as ProductResource;
 use App\Models\Product;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
+
+        return $this->sendResponse(ProductResource::collection($products), 'Products retrieved successfully!');
     }
 
     /**
@@ -35,6 +38,11 @@ class ProductController extends Controller
      */
     public function store(StoreProduct $request)
     {
+        $input = $request->all();
+
+        $product = Product::create($input);
+
+        return $this->sendResponse(new ProductResource($product), 'Product added successfully!');
     }
 
     /**
@@ -45,6 +53,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if (is_null($product)) {
+            return $this->sendError('Product not found.');
+        }
+
+        return $this->sendResponse(new ProductResource($product), 'Product retrieved successfully!');
     }
 
     /**
@@ -66,6 +79,14 @@ class ProductController extends Controller
      */
     public function update(UpdateProduct $request, Product $product)
     {
+        $input = $request->all();
+
+        $product->name = $input['name'];
+        $product->description = $input['description'];
+        $product->quantity = $input['quantity'];
+        $product->save();
+
+        return $this->sendResponse(new ProductResource($product), 'Product updated successfully!');
     }
 
     /**
@@ -76,5 +97,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->delete();
+
+        return $this->sendResponse([], 'Product deleted successfully!');
     }
 }
