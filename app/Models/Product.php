@@ -42,6 +42,17 @@ class Product extends Model
         'quantity' => 'required|max:45',
     ];
 
+    /**
+     * Get the products quantity.
+     *
+     * @param  string $value
+     * @return string
+     */
+    public function getQuantityAttribute($value)
+    {
+        return (int)$value;
+    }
+
     public function suppliers()
     {
         return $this->belongsToMany('App\Models\Supplier', 'supplier_products');
