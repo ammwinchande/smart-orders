@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Order;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProduct;
+use App\Http\Requests\UpdateProduct;
+use App\Models\Product;
 
-class OrderController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -24,7 +25,6 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -33,53 +33,48 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Product       $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Product $product)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Product       $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Product $product)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Product       $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateProduct $request, Product $product)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Product       $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Product $product)
     {
-        //
     }
 }
