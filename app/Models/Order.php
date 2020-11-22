@@ -19,6 +19,15 @@ class Order extends Model
         'order_number',
     ];
 
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'order_number' => 'required|unique:orders|min:3|max:45',
+    ];
+
     public function products()
     {
         return $this->belongsToMany('App\Models\Product', 'order_details');

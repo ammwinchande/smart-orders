@@ -31,6 +31,17 @@ class Product extends Model
         'updated_at' => 'datetime',
     ];
 
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required|min:2|max:45',
+        'description' => 'required|min:5|max:45',
+        'quantity' => 'required|max:45',
+    ];
+
     public function suppliers()
     {
         return $this->belongsToMany('App\Models\Supplier', 'supplier_products');

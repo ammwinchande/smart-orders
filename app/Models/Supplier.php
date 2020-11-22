@@ -19,6 +19,15 @@ class Supplier extends Model
         'name',
     ];
 
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required|unique:suppliers|min:3|max:45',
+    ];
+
     public function products()
     {
         return $this->belongsToMany('App\Models\Products', 'supplier_products');
